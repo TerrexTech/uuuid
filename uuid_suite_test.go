@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/gocql/gocql"
-
 	"github.com/gofrs/uuid"
 
 	. "github.com/onsi/ginkgo"
@@ -52,11 +51,12 @@ var _ = Describe("UUID", func() {
 			uid, err := NewV4()
 			Expect(err).ToNot(HaveOccurred())
 
-			ti, err := gocql.Marshal(uuidType{}, uid)
+			marshalled, err := gocql.Marshal(uuidType{}, uid)
 			Expect(err).ToNot(HaveOccurred())
 
-			_, err = uuid.FromBytes(ti)
+			newUUID, err := uuid.FromBytes(marshalled)
 			Expect(err).ToNot(HaveOccurred())
+			Expect(newUUID.String()).To(Equal(uid.String()))
 		})
 	})
 
@@ -68,11 +68,9 @@ var _ = Describe("UUID", func() {
 			uidBytes := uid.Bytes()
 
 			unmarshal := UUID{}
-			emptyUUID := unmarshal.String()
-
 			err = gocql.Unmarshal(uuidType{}, uidBytes, &unmarshal)
 			Expect(err).ToNot(HaveOccurred())
-			Expect(unmarshal.String()).ToNot(Equal(emptyUUID))
+			Expect(unmarshal.String()).To(Equal(uid.String()))
 		})
 	})
 
