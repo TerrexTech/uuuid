@@ -3,6 +3,22 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:5e33f17a0345f8ff94763b128e790293c0d5b060d57a32aadfcc23fd51a619fa"
+  name = "github.com/buger/jsonparser"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "6acdf747ae99cad92d1e8134606008acaca71844"
+
+[[projects]]
+  digest = "1:586ea76dbd0374d6fb649a91d70d652b7fe0ccffb8910a77468e7702e7901f3d"
+  name = "github.com/go-stack/stack"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a"
+  version = "v1.8.0"
+
+[[projects]]
+  branch = "master"
   digest = "1:41cbe73cce1dd0e86e2223ca5deecf41c374643c82ec2b56f78bc4e7cad24f83"
   name = "github.com/gocql/gocql"
   packages = [
@@ -51,6 +67,23 @@
   pruneopts = "UT"
   revision = "a30252cb686a21eb2d0b98132633053ec2f7f1e5"
   version = "v1.0.0"
+
+[[projects]]
+  digest = "1:a7ea439e1d8ed7f5862240c5f845027c026252ce3616e14c9c10160a20cf70b4"
+  name = "github.com/mongodb/mongo-go-driver"
+  packages = [
+    "bson",
+    "bson/builder",
+    "bson/decimal",
+    "bson/elements",
+    "bson/internal/llbson",
+    "bson/objectid",
+    "bson/parser",
+    "bson/parser/ast",
+  ]
+  pruneopts = "UT"
+  revision = "e9228a40a480a5403b7256fb755ab000ff754c35"
+  version = "v0.0.14"
 
 [[projects]]
   digest = "1:42e29deef12327a69123b9cb2cb45fee4af5c12c2a23c6e477338279a052703f"
@@ -185,6 +218,7 @@
   input-imports = [
     "github.com/gocql/gocql",
     "github.com/gofrs/uuid",
+    "github.com/mongodb/mongo-go-driver/bson",
     "github.com/onsi/ginkgo",
     "github.com/onsi/gomega",
   ]
