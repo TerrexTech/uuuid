@@ -46,6 +46,32 @@ var _ = Describe("UUID", func() {
 		})
 	})
 
+	Context("new V1 UUID is requested", func() {
+		It("should return new UUID", func() {
+			u, err := NewV1()
+			Expect(err).ToNot(HaveOccurred())
+
+			uid := u.String()
+			Expect(uid).ToNot(BeEmpty())
+			_, err = uuid.FromString(uid)
+			Expect(err).ToNot(HaveOccurred())
+		})
+
+		It("should return be able to get timestamp from V1 UUID", func() {
+			u, err := NewV1()
+			Expect(err).ToNot(HaveOccurred())
+
+			uid := u.String()
+			Expect(uid).ToNot(BeEmpty())
+			_, err = uuid.FromString(uid)
+			Expect(err).ToNot(HaveOccurred())
+
+			_, err = uuid.TimestampFromV1(u.UUID)
+			Expect(err).ToNot(HaveOccurred())
+
+		})
+	})
+
 	Describe("Marshalling", func() {
 		It("should marshal to CQL", func() {
 			uid, err := NewV4()
