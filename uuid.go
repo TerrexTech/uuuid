@@ -67,6 +67,12 @@ func (u *UUID) UnmarshalCQL(info gocql.TypeInfo, data []byte) error {
 	return u.UnmarshalBinary(data)
 }
 
+// TimestampFromV1 returns the Timestamp embedded within a V1 UUID.
+// Returns an error if the UUID is any version other than 1.
+func TimestampFromV1(u UUID) (uuid.Timestamp, error) {
+	return uuid.TimestampFromV1(u.UUID)
+}
+
 // randomHWAddrFunc generates a random MAC address for V1-UUID.
 func randomHWAddrFunc() (net.HardwareAddr, error) {
 	// From: https://stackoverflow.com/questions/21018729/generate-mac-address-in-go

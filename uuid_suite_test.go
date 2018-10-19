@@ -100,6 +100,29 @@ var _ = Describe("UUID", func() {
 		})
 	})
 
+	Context("time from UUID V1 is requested", func() {
+		It("should return timestamp if UUID is V1", func() {
+			u, err := NewV1()
+			Expect(err).ToNot(HaveOccurred())
+
+			expectedTime, err := uuid.TimestampFromV1(u.UUID)
+			Expect(err).ToNot(HaveOccurred())
+
+			actualTime, err := TimestampFromV1(u)
+			Expect(err).ToNot(HaveOccurred())
+
+			Expect(expectedTime).To(Equal(actualTime))
+		})
+
+		It("should return error if UUID other than V1 is specified", func() {
+			u, err := NewV4()
+			Expect(err).ToNot(HaveOccurred())
+
+			_, err = TimestampFromV1(u)
+			Expect(err).To(HaveOccurred())
+		})
+	})
+
 	Context("parsing to UUID", func() {
 		Describe("FromBytes", func() {
 			It("should parse bytes to UUID", func() {
